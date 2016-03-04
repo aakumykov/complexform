@@ -27,9 +27,14 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     existing_person = Person.find_by(name:person_params[:name])
+    puts "===== existing_person =====> #{existing_person}"
     
     if !existing_person.nil?
       @person = existing_person
+      person_params[:addresses_attributes].values.each do |addr_attrs|
+        addr_attrs.delete(:_destroy)
+        @person.addresses.build(addr_attrs)
+      end
     else
       @person = Person.new(person_params)
     end
