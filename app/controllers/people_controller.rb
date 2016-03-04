@@ -72,7 +72,7 @@ class PeopleController < ApplicationController
     def person_params
       params.require(:person).permit(
         :name, 
-        addresses_attributes: [:id, :kind, :street]
+        addresses_attributes: [:id, :kind, :street, :_destroy]
       )
     end
 end
