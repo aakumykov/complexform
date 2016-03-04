@@ -26,7 +26,13 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
-    @person = Person.new(person_params)
+    existing_person = Person.find_by(name:person_params[:name])
+    
+    if !existing_person.nil?
+      @person = existing_person
+    else
+      @person = Person.new(person_params)
+    end
 
     respond_to do |format|
       if @person.save
@@ -73,7 +79,7 @@ class PeopleController < ApplicationController
     def person_params
       params.require(:person).permit(
         :name, 
-        addresses_attributes: [:id, :kind, :street, :_destroy]
+        addresses_attributes: [:id, :street, :_destroy]
       )
     end
 end

@@ -14,8 +14,8 @@
   <tbody>
     <% @addresses.each do |address| %>
       <tr>
-        <td><%= address.street %></td>
-        <td><%= address.person.name %></td>
+        <td><%= link_to address.street, address_path(address) %></td>
+        <td><%= link_to address.person.name, person_path(address.person) %></td>
         <td><%= link_to 'Show', address %></td>
         <td><%= link_to 'Edit', edit_address_path(address) %></td>
         <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>

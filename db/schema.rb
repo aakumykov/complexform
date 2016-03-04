@@ -14,7 +14,6 @@
 ActiveRecord::Schema.define(version: 20160304092642) do
 
   create_table "addresses", force: :cascade do |t|
-    t.string   "kind"
     t.string   "street"
     t.integer  "person_id"
     t.datetime "created_at", null: false
