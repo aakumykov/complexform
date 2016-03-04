@@ -5,5 +5,13 @@
   <%= @person.name %>
 </p>
 
+<p>
+	<strong>Addresses:</strong>
+	<ul>
+	<% @person.addresses.each do |adr| %>
+		<li><%= adr.kind %>: <%= adr.street %></li>
+	<% end %>
+</p>
+
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>

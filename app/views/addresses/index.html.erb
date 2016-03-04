@@ -2,7 +2,7 @@
 
 <h1>Listing Addresses</h1>
 
-<table>
+<table cellpadding="4" cellspacing="3" border="2">
   <thead>
     <tr>
       <th>Kind</th>
@@ -17,7 +17,7 @@
       <tr>
         <td><%= address.kind %></td>
         <td><%= address.street %></td>
-        <td><%= address.person_id %></td>
+        <td><%= address.person.name %></td>
         <td><%= link_to 'Show', address %></td>
         <td><%= link_to 'Edit', edit_address_path(address) %></td>
         <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>

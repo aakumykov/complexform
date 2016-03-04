@@ -15,6 +15,7 @@ class PeopleController < ApplicationController
   # GET /people/new
   def new
     @person = Person.new
+    2.times { @person.addresses.build}
   end
 
   # GET /people/1/edit
@@ -69,6 +70,9 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:name)
+      params.require(:person).permit(
+        :name, 
+        addresses_attributes: [:id, :kind, :street]
+      )
     end
 end
