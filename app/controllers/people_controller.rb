@@ -32,7 +32,8 @@ class PeopleController < ApplicationController
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
       else
-        format.html { render :new }
+        #2.times { @person.addresses.build}
+        format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
