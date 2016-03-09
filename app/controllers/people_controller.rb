@@ -15,24 +15,35 @@ class PeopleController < ApplicationController
   # GET /people/new
   def new
     @person = Person.new
-    2.times { @person.addresses.build}
+    1.times { @person.addresses.build}
   end
 
   # GET /people/1/edit
   def edit
+    1.times { @person.addresses.build} if @person.addresses.empty?
   end
 
   # POST /people
   # POST /people.json
   def create
-    @person = Person.new(person_params)
+    existing_person = Person.find_by(name:person_params[:name])
+    puts "===== existing_person =====> #{existing_person}"
+    
+    if !existing_person.nil?
+      @person = existing_person
+      person_params[:addresses_attributes].values.each do |addr_attrs|
+        addr_attrs.delete(:_destroy)
+        @person.addresses.build(addr_attrs)
+      end
+    else
+      @person = Person.new(person_params)
+    end
 
     respond_to do |format|
       if @person.save
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
       else
-        #2.times { @person.addresses.build}
         format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
@@ -73,7 +84,7 @@ class PeopleController < ApplicationController
     def person_params
       params.require(:person).permit(
         :name, 
-        addresses_attributes: [:id, :kind, :street, :_destroy]
+        addresses_attributes: [:id, :street, :_destroy]
       )
     end
 end
