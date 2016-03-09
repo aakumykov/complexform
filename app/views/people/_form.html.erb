@@ -16,19 +16,7 @@
     <%= f.text_field :name %>
   </div>
 
-  Addresses:
-  <ul>
-    <%= f.fields_for :addresses do |addresses_form| %>
-      <li>
-        <%= addresses_form.label :street %>
-        <%= addresses_form.text_field :street %>
-
-        <%= addresses_form.check_box :_destroy %>
-      </li>
-    <% end %>
-  </ul>
-
-  <div class="actions">
+   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
