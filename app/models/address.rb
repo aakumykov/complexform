@@ -4,4 +4,5 @@ class Address < ActiveRecord::Base
 	validates_associated :person
 
 	validates :street, presence: true
+	#validates :person_id, presence: true
 end
