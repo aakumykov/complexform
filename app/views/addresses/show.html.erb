@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Street:</strong>
+  <strong>Улица:</strong>
   <%= @address.street %>
 </p>
 
 <p>
-  <strong>Person:</strong>
-  <%= @address.person_id %>
+  <strong>Человек:</strong>
+  <%= @address.person.name %>
 </p>
 
-<%= link_to 'Edit', edit_address_path(@address) %> |
-<%= link_to 'Back', addresses_path %>
+<%= link_to 'Правка', edit_address_path(@address) %> |
+<%= link_to 'Назад', addresses_path %>
