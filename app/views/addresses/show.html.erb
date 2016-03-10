@@ -7,8 +7,9 @@
 
 <p>
   <strong>Человек:</strong>
-  <%= @address.person.name %>
+  <%= @address.person.name if not @address.person.nil? %>
 </p>
 
 <%= link_to 'Правка', edit_address_path(@address) %> |
 <%= link_to 'Назад', addresses_path %>
+<p><%= link_to 'Новый адрес', new_address_path %></p>
