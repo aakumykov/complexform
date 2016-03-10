@@ -1,38 +1,35 @@
 <%= form_for(@address) do |f| %>
   <% if @address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
+	<div id="error_explanation">
+	  <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
 
-      <ul>
-      <% @address.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+	  <ul>
+	  <% @address.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+	  <% end %>
+	  </ul>
+	</div>
   <% end %>
   
   <div class="field">
-    <%= f.label :street %><br>
-    <%= f.text_field :street %>
+	<%= f.label :street, 'Улетса' %><br>
+	<%= f.text_field :street %>
+  </div> 
+  <div>
+	<%= f.label :person_id, 'Пирсонаж' %>
+	<%= f.collection_select(:person_id, Person.all, :id, :name, prompt:'Выберите человека') %>
   </div>
-  <div class="field">
-    <%= f.label :person_id %><br>
-    <%= f.number_field :person_id %>
-  </div>
-  
-   Новый человек:
-  <ul>
-    <%= f.fields_for :person do |person_form| %>
-      <li>
-        <%= person_form.label :name %>
-        <%= person_form.text_field :name %>
 
-        <%= person_form.check_box :_destroy %>
-      </li>
-    <% end %>
-  </ul>
+<p>
+	<%= f.fields_for :person do |person_form| %>
+		<%= person_form.label :name, 'Новый персонаж' %>
+		<%= person_form.text_field :name %>
+
+		<%= person_form.check_box :_destroy %>
+	<% end %>
+</p>  
   
   <div class="actions">
-    <%= f.submit %>
+	<%= f.submit %>
   </div>
 <% end %>
