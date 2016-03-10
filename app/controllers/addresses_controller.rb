@@ -27,16 +27,6 @@ class AddressesController < ApplicationController
   # POST /addresses.json
   def create
 	@address = Address.new(address_params)
-	
-	#~ puts "===== @address.attributes ====="
-	#~ @address.attributes.each { |k,v,|
-		#~ puts "#{k} => #{v}"
-	#~ }
-	#~ 
-	#~ puts "===== @address.person.attributes =====>"
-	#~ @address.person.attributes.each { |k,v,|
-		#~ puts "#{k} => #{v}"
-	#~ }
 
     respond_to do |format|
       if @address.save
