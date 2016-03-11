@@ -29,16 +29,14 @@ class AddressesController < ApplicationController
 	if address_params[:new_person_name].present?
 		@address.build_person(name: address_params[:new_person_name])
 	end
-
-    respond_to do |format|
-      if @address.save
-        format.html { redirect_to addresses_path, notice: 'Address was successfully created.' }
-        format.json { render :show, status: :created, location: @address }
-      else
-        format.html { render :new }
-        format.json { render json: @address.errors, status: :unprocessable_entity }
-      end
-    end
+	
+	begin
+	      @address.save
+		redirect_to addresses_path, notice: 'Address was successfully created.'
+	rescue => e
+		flash.now[:danger] = e.message
+		render :edit
+	end
   end
 
   # PATCH/PUT /addresses/1
