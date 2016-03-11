@@ -22,8 +22,8 @@
 
 <p>
 	<%= f.fields_for :person do |person_form| %>
-		<%= person_form.label :name, 'Новый персонаж' %>
-		<%= person_form.text_field :name %>
+		<%= person_form.label :new_name, 'Новый персонаж' %>
+		<%= person_form.text_field :new_name %>
 
 		<%= person_form.check_box :_destroy %>
 	<% end %>
