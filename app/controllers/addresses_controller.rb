@@ -20,13 +20,17 @@ class AddressesController < ApplicationController
 
   # GET /addresses/1/edit
   def edit
-	@address.build_person if @address.person.nil?
+	#@address.build_person if @address.person.nil?
   end
 
   # POST /addresses
   # POST /addresses.json
   def create
 	@address = Address.new(address_params)
+	#puts "===== Adresses#create, @address.person =====> #{@address.person}"
+	if address_params[:person_id].blank? && !address_params[:new_person_name].blank?
+		@address.build_person(name: address_params[:new_person_name])
+	end
 
     respond_to do |format|
       if @address.save
