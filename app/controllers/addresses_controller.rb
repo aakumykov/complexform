@@ -74,7 +74,8 @@ class AddressesController < ApplicationController
 	params.require(:address).permit(
 		:street,
 		:person_id,
-		person_attributes: [:name, :_destroy],
+		:new_person_name,
+		person_attributes: [:name, :new_name, :_destroy],
 	)
     end
 end
